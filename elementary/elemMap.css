@@ -1,0 +1,42 @@
+html, body {padding: 0; margin: 0;}
+    #map { width: 100%; height:100%; background: black;}
+    #menu { position: absolute; top: 5; right: 5; width: 350px; height:200px; background: transparent;}
+    #menu a { 
+              margin: 0 5px 5px 0;
+              float: left;
+              vertical-align: baseline;
+              padding: 12px 13px;
+              font: bold 19px "Helvetica",Arial;
+              line-height: normal;
+              color: #555;
+              text-shadow: 0 1px 0 white;
+              border-radius: 3px;
+              border: 1px solid #B0B0B0;
+              letter-spacing: -1px;
+              background: -webkit-linear-gradient(#F9F9F9, #E1E1E1);
+              background: -moz-linear-gradient(#F9F9F9, #E1E1E1);
+              background: -o-linear-gradient(#F9F9F9, #E1E1E1);
+              background: linear-gradient(#F9F9F9,#E1E1E1);
+              text-decoration: none;
+              cursor: pointer;
+            }
+    #menu a.selected,
+    #menu a:hover { 
+              color: #000;
+            }
+#legend { position: absolute; right: 250px; top: 340px; width: 220px; padding: 0px;  
+			background: -webkit-linear-gradient(#F9F9F9, #E1E1E1); 
+			background: -moz-linear-gradient(#F9F9F9, #E1E1E1);
+			background: -o-linear-gradient(#F9F9F9, #E1E1E1);
+            background: linear-gradient(#F9F9F9,#E1E1E1); 
+			z-index: 99; font-family: Arial, Helvetica, sans-serif;}
+    #legend .title, 
+    #legend .row { position: relative; float: left; width: 240px; background: none; padding: 5; margin: 0; font-size: 10px; }
+    #legend .title {font-weight: bold; font-size: 12px;}
+    #legend .row span { float: left; padding: 0; margin: 0; }
+    
+    #legend .row span.box { width: 20px; height: 20px; background: black; margin: 2px; border: 1px solid #BBB;}
+    #legend .row span.line { width: 20px; height: 6px; background: black; margin: 2px; margin-top: 11px; border: 1px solid #BBB;}
+    #legend .row span.circle { width: 20px; height: 20px; background: black; margin: 2px; border: 1px solid #BBB; border-radius: 50%;}
+
+    #legend .row span.value { line-height: 18px; margin: 5px; max-width: 192px;}
