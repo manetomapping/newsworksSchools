@@ -12,21 +12,21 @@ var map;
     })
 	
 	bins_nabe = {
-          "#AE017E": "75.1 to 100%",
-          "#F768A1": "50.1 to 75%",
-          "#FBB4B9": "25.1 to 50%",
-          "#FEEBE2": "0 to 25%"
+          "#AE017E": "High (74.7 - 100%)",
+          "#F768A1": "Above Average (62.8 - 74.6%)",
+          "#FBB4B9": "Below Average (51.2 to 62.7%)",
+          "#FEEBE2": "Low (0 to 51.1%)"
         };
 	bins_charter = {
-          "#AE017E": "40.1 to 100%",
-          "#F768A1": "20.1 to 75%",
-          "#FBB4B9": "15.1 to 60%",
-          "#FEEBE2": "0 to 25%"
+          "#AE017E": "High (29.6 - 100%)",
+          "#F768A1": "Above Average (21.2 - 29.5%)",
+          "#FBB4B9": "Below Average (12.9 - 21.1%)",
+          "#FEEBE2": "Low (0 - 12.8%)"
         };
 	
 	
-	var title_nabe = 'Attending Neighborhood School <br> (includes Renaissance)'; 
-	var title_charter = 'Attending Charter School';
+	var title_nabe = '% of students attending their own<br>NEIGHBORHOOD SCHOOL'; 
+	var title_charter = '% of students attending a<br>CHARTER SCHOOL';
 	
     L.tileLayer('https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/{z}/{x}/{y}.png', {
       attribution: 'MapBox'
@@ -90,7 +90,7 @@ var map;
           holder.append(title);
           mapL.append(holder);
       for (i in bins) {
-        var key = $('<span>').attr('class', 'circle'); // can take 'box', 'line', or 'circle' type here for customizing your ledgend
+        var key = $('<span>').attr('class', 'box'); // can take 'box', 'line', or 'circle' type here for customizing your ledgend
             key.css('background', i);
         var val = $('<span>').attr('class', 'value');
             val.html(bins[i]);
@@ -104,22 +104,22 @@ var map;
    var LayerActions = {
       none: function(){
           layers[1].setQuery("SELECT * FROM philadelphiaschools201201");
-		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFF99;marker-opacity: 0; marker-line-opacity: 0; }} ");
+		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 0; marker-line-opacity: 0; }} ");
           return true;
         },
       close: function(){
           layers[1].setQuery("SELECT * FROM philadelphiaschools201201 WHERE action IS NOT NULL AND facil_type = 'School' AND grade_leve ='Elementary School'");
-		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFF99;marker-opacity: 1; marker-width: 6; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
+		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 1; marker-width: 6; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
           return true;
         },
 	  pcharter: function(){
-          layers[0].setCartoCSS("#newsworks_elemcatch{line-color: #FFF;line-opacity:.8;line-width: .5;polygon-opacity: 0.9;}#newsworks_elemcatch [ pcharter <= 100] {polygon-fill: #AE017E;}#newsworks_elemcatch [ pcharter <= 40] {polygon-fill:#F768A1;}  #newsworks_elemcatch [ pcharter <= 20] {polygon-fill: #FBB4B9;}#newsworks_elemcatch [ pcharter <= 15] {polygon-fill: #FEEBE2;}");
+          layers[0].setCartoCSS("#newsworks_elemcatch{line-color: #FFF;line-opacity:.8;line-width: .5;polygon-opacity: 0.9;}#newsworks_elemcatch [ pcharterall <= 100] {polygon-fill: #AE017E;}#newsworks_elemcatch [ pcharterall <= 29.6] {polygon-fill:#F768A1;}  #newsworks_elemcatch [ pcharterall <= 21.3] {polygon-fill: #FBB4B9;}#newsworks_elemcatch [ pcharterall <= 12.9] {polygon-fill: #FEEBE2;}");
           layers[1].setQuery("SELECT * FROM philadelphiaschools201201 WHERE instit_typ = 'Charter' AND(grade_leve = 'Elementary School' or grade_leve = 'Elem/Middle') AND facil_type = 'School' AND active = 'y'");
 		  CartoDBLegend(bins_charter,title_charter);
 		  return true;
         },
 	  pneighborhood: function(){
-		  layers[0].setCartoCSS("#newsworks_elemcatch{line-color: #FFF;line-opacity: .8;line-width: .5;polygon-opacity: 0.9;}#newsworks_elemcatch [ pinnabe <= 100] {polygon-fill: #AE017E;}#newsworks_elemcatch [ pinnabe <= 75] {polygon-fill: #F768A1;}#newsworks_elemcatch [ pinnabe <= 60] {polygon-fill: #FBB4B9;} #newsworks_elemcatch [ pinnabe <= 25] {polygon-fill: #FEEBE2;}");
+		  layers[0].setCartoCSS("#newsworks_elemcatch{line-color: #FFF;line-opacity: .8;line-width: .5;polygon-opacity: 0.9;}#newsworks_elemcatch [ pinnabe <= 100] {polygon-fill: #AE017E;}#newsworks_elemcatch [ pinnabe <= 74.6] {polygon-fill: #F768A1;}#newsworks_elemcatch [ pinnabe <= 62.9] {polygon-fill: #FBB4B9;} #newsworks_elemcatch [ pinnabe <= 51.1] {polygon-fill: #FEEBE2;}");
           
 		  CartoDBLegend(bins_nabe,title_nabe);
 		  return true;
