@@ -60,12 +60,13 @@ var map;
     var layerOptions_schools = {
              query: "SELECT * FROM {{table_name}} WHERE action = 'Close'",
               //tile_style: "#{{table_name}}{marker-fill: #F84F40; marker-width: 8; marker-line-color: white; marker-line-width: 2; marker-clip: false; marker-allow-overlap: true;} "
-			  tile_style: "#philadelphiaschools201201 [instit_typ = 'District'] {[mapnik-geometry-type=point] {marker-fill: #FFFF99;marker-opacity: 0; marker-width: 12; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}}#philadelphiaschools201201 [instit_typ = 'Charter'] {[mapnik-geometry-type=point] { marker-fill: #386CB0; marker-opacity: 0; marker-width: 12;marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}}#schoolclosings [expanded_seats = ''] [instit_typ = 'Charter' ] {[mapnik-geometry-type=point] {marker-fill: #386CB0;marker-opacity: .3;marker-width: 12;marker-line-opacity: 0;marker-placement: point; marker-type: ellipse;marker-allow-overlap: true;}}"
+	     tile_style: "#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFFFF;marker-opacity: .7;Â marker-width: 4;Â marker-line-opacity: 0;Â marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}}"
+	
 	}
 
 	var layerOptions_HSCatch = {
-			  tile_style: "#newsworks_hscatchment{line-color: #FFF;line-opacity: .5;line-width: .5; polygon-fill: #BFC7CB; polygon-opacity: 0.8;}"
-	}
+		tile_style:"#newsworks_hscatchment{line-color: #FFF;line-opacity: 0.7;line-width: 0.5;polygon-opacity: 0.8;}#newsworks_hscatchment [ p_innabe <= 100] {polygon-fill: #2E3F8A;}#newsworks_hscatchment [ p_innabe <= 40.7] {polygon-fill: #4A60C3;} #newsworks_hscatchment [ p_innabe <= 30.7] {polygon-fill: #8A98D8;}#newsworks_hscatchment [ p_innabe <= 20.7]{polygon-fill: #CAD0ED;}");
+          }
 	
     var layers = [];
 
@@ -124,39 +125,39 @@ var map;
    var LayerActions = {
       none: function(){
           layers[1].setQuery("SELECT * FROM philadelphiaschools201201");
-		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 0; marker-line-opacity: 0; }} ");
+		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 0; marker-line-opacity: 0;ï¿½}} ");
           return true;
         },
       close: function(){
           layers[1].setQuery("SELECT * FROM philadelphiaschools201201 WHERE action IS NOT NULL AND facil_type = 'School' AND grade_leve ='High School'");
-		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 1; marker-width: 6; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
+		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 1;ï¿½marker-width: 6;ï¿½marker-line-opacity: 0;ï¿½marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
           return true;
         },
 	  pcharter: function(){
           layers[0].setCartoCSS("#newsworks_hscatchment{line-color: #FFF;line-opacity: 0.7;line-width: 0.5;polygon-opacity: 0.8;}#newsworks_hscatchment [ pcharterall <= 100] {polygon-fill: #2E3F8A;}#newsworks_hscatchment [ pcharterall <= 32.9] {polygon-fill: #4A60C3;}#newsworks_hscatchment [ pcharterall <= 26.4] {polygon-fill: #8A98D8;}#newsworks_hscatchment [ pcharterall <= 20.0]  {polygon-fill: #CAD0ED;}");
           layers[1].setQuery("SELECT * FROM philadelphiaschools201201 WHERE instit_typ = 'Charter' AND grade_leve = 'High School' AND facil_type = 'School' AND active = 'y'");
-		 layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFFFF;marker-opacity: .7; marker-width: 4; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
+		 layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFFFF;marker-opacity: .7;ï¿½marker-width: 4;ï¿½marker-line-opacity: 0;ï¿½marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
 		  CartoDBLegend(bins_charter,title_charter);
 		  return true;
         },
 	  pneighborhood: function(){
 		  layers[0].setCartoCSS("#newsworks_hscatchment{line-color: #FFF;line-opacity: 0.7;line-width: 0.5;polygon-opacity: 0.8;}#newsworks_hscatchment [ p_innabe <= 100] {polygon-fill: #2E3F8A;}#newsworks_hscatchment [ p_innabe <= 40.7] {polygon-fill: #4A60C3;} #newsworks_hscatchment [ p_innabe <= 30.7] {polygon-fill: #8A98D8;}#newsworks_hscatchment [ p_innabe <= 20.7]{polygon-fill: #CAD0ED;}");
           layers[1].setQuery("SELECT * FROM philadelphiaschools201201 WHERE instit_typ = 'District' AND grade_leve = 'High School' AND facil_type = 'School' AND active = 'y' AND type IS NULL ");
-		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFFFF;marker-opacity: .7; marker-width: 4; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
+		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFFFF;marker-opacity: .7;ï¿½marker-width: 4;ï¿½marker-line-opacity: 0;ï¿½marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
 		  CartoDBLegend(bins_nabe,title_nabe);
 		  return true;
         },
 	  pSpecAdmit: function(){
 		  layers[0].setCartoCSS("#newsworks_hscatchment{line-color: #FFF;line-opacity: 0.7;line-width: 0.5;polygon-opacity: 0.8;}#newsworks_hscatchment [ pspecadmit <= 100]{polygon-fill: #2E3F8A;}#newsworks_hscatchment [ pspecadmit <= 26.8] {polygon-fill: #4A60C3;}#newsworks_hscatchment [ pspecadmit <= 18.4] {polygon-fill: #8A98D8;}#newsworks_hscatchment [ pspecadmit <= 10.0] {polygon-fill: #CAD0ED;polygon-opacity: 0.9;}");
           layers[1].setQuery("SELECT * FROM philadelphiaschools201201 WHERE type = 'Special Admission' AND (grade_leve = 'High School' OR grade_leve = 'Middle/High' )AND facil_type = 'School' AND active = 'y'");
-		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFFFF;marker-opacity: .7; marker-width: 4; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
+		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFFFF;marker-opacity: .7;ï¿½marker-width: 4;ï¿½marker-line-opacity: 0;ï¿½marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
 		  CartoDBLegend(bins_specAdmit,title_specAdmit);
 		  return true;
         },		
 	  pCitywide: function(){
 		  layers[0].setCartoCSS("#newsworks_hscatchment{line-color: #FFF;line-opacity: 0.7;line-width: 0.5;polygon-opacity: 0.8;}#newsworks_hscatchment [ pcitymiltcte <= 100] {polygon-fill: #2E3F8A;}#newsworks_hscatchment [ pcitymiltcte <= 14.4] {polygon-fill: #4A60C3;}#newsworks_hscatchment [ pcitymiltcte <= 11.2] {polygon-fill: #8A98D8;}#newsworks_hscatchment [ pcitymiltcte <= 8.1] {polygon-fill: #CAD0ED;}");
           layers[1].setQuery("SELECT * FROM philadelphiaschools201201 WHERE type = 'Citywide Admission' AND grade_leve = 'High School' AND facil_type = 'School' AND active = 'y'");
-		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFFFF;marker-opacity: .7; marker-width: 4; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
+		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFFFF;marker-opacity: .7;ï¿½marker-width: 4;ï¿½marker-line-opacity: 0;ï¿½marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
 		  CartoDBLegend(bins_cityWide,title_cityWide);
 		  return true;
         }	
