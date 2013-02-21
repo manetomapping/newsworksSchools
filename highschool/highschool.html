@@ -4,17 +4,37 @@
 	<link rel="stylesheet" href="../mapMenu.css" />
 	<script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
 	<script src="highSchoolScript_wRen.js"> </script>
+
 </head>
 <body onload="init()">
   <div id='map'></div>
-  <div id='menu'> 
-     <a href="#none" id="none" class="button none selected">Clear Schools</a>
-	 <a href="#close" id="close" class="button close">Proposed Closure</a> 
-	 <a href="#pneighborhood" id="pneighborhood" class="button pneighborhood ">Neighborhood</a> 
-	 <a href="#pcharter" id="pcharter" class="button pcharter">Charter</a>  
-	 <a href="#pSpecAdmit" id="pSpecAdmit" class="button pSpecAdmit ">Magnet</a> 
-	 <a href="#pCitywide" id="pCitywide" class="button pCitywide ">Citywide</a> 	  
-	  </div>
+  <div id="mapheader"> 
+    <ul id='menu' class="menubuttons">
+	 <li><a href="#pneighborhood" id="pneighborhood" class="button pneighborhood first selected">Neighborhood</a> </li>
+	 <li><a href="#pcharter" id="pcharter" class="button pcharter">Charter</a> </li> 
+	<li> <a href="#pSpecAdmit" id="pSpecAdmit" class="button pSpecAdmit ">Magnet</a> </li>
+	<li><a href="#pCitywide" id="pCitywide" class="button pCitywide last">Citywide</a> </li>
+	 
+    </ul>
+   
+ <!--
+	 <ul id="submenu" class="menubuttons">
+	  	 
+	 	<li><a href="#close" id="close" class="button close"></a>Show Proposed Closures</li> 
+	 	<li><a href="#none" id="none" class="button none selected ">Hide Schools</a></li> 
+	 </ul>--> 
+  </div>
+	   
   <div id ='legend'></div>
+  
+  <div id="show">
+         
+            <input type="checkbox" id="c1" checked="true" name="cc" />
+            <label for="c1"><span></span>Show corresponding schools</label>
+           
+            <input type="checkbox" id="c2" name="cc" />
+            <label for="c2"><span></span>Show proposed closures</label>
+    
+   </div>
 </body>
 </html>
