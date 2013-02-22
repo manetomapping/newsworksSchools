@@ -7,7 +7,7 @@ var map;
 	
     // initiate leaflet map
     map = new L.Map('map', { 
-      center: [ 39.990909,-75.130606],
+      center: [ 40.01,-75.130606],
       zoom: 11
     })
 	
