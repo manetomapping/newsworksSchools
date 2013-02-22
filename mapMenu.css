@@ -171,7 +171,7 @@ input[type="checkbox"]:checked + label span {
 
 /* END CHECKBOXES */
            
-#legend { position: absolute; left: 333px; top: 440px; width: 235px; padding: 0px;  
+#legend { position: absolute; left: 333px; top: 460px; width: 235px; padding: 0px;  
 			background: -webkit-linear-gradient(#F9F9F9, #E1E1E1); 
 			background: -moz-linear-gradient(#F9F9F9, #E1E1E1);
 			background: -o-linear-gradient(#F9F9F9, #E1E1E1);
