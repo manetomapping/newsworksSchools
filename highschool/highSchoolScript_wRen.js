@@ -51,6 +51,7 @@ var map;
     
 	var layerUrl_schools = 'http://manetomapping.cartodb.com/api/v1/viz/19592/viz.json';
 	var layerUrl_HSCatch = 'http://manetomapping.cartodb.com/api/v1/viz/19503/viz.json';
+	var layerURL_closures = 'http://manetomapping.cartodb.com/api/v1/viz/21843/viz.json';
 
 	//add the schools layer
     var layerOptions_schools = {
@@ -62,6 +63,11 @@ var map;
 	var layerOptions_HSCatch = {
 			  query: 'SELECT total as "Total public school students in attendance zone", p_innabe as "% attending own NEIGHBORHOOD HIGH SCHOOL", pcharterall as "% attending a CHARTER", pspecadmit as "% attending a MAGNET HIGH SCHOOL",pcitymiltcte as "% attending a CITYWIDE, VO-TECH, OR MILITARY HIGH SCHOOL", * FROM newsworks_hscatchment',
 			  tile_style: "#newsworks_hscatchment{line-color: #FFF;line-opacity: 0.7;line-width: 0.5;polygon-opacity: 0.8;}#newsworks_hscatchment [ p_innabe <= 100] {polygon-fill: #2E3F8A;}#newsworks_hscatchment [ p_innabe <= 40.7] {polygon-fill: #4A60C3;} #newsworks_hscatchment [ p_innabe <= 30.7] {polygon-fill: #8A98D8;}#newsworks_hscatchment [ p_innabe <= 20.7]{polygon-fill: #CAD0ED;}"
+	}
+	
+	var layerOptions_closures = {
+			query: 'SELECT * FROM philadelphiaschools201201_closures',
+			tile_style: "#philadelphiaschools201201_closures {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 0; marker-width: 4; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} "
 	}
 	
     var layers = [];
@@ -76,7 +82,7 @@ var map;
     });
     //add the legend
 	CartoDBLegend(bins_nabe,title_nabe);
-	//add points on top
+	//add corresponding schools layer next
     cartodb.createLayer(map, layerUrl_schools, layerOptions_schools)
      .on('done', function(layer) {
       map.addLayer(layer);
@@ -84,6 +90,28 @@ var map;
     }).on('error', function() {
       //log the error
     });
+	//add closures on top
+	cartodb.createLayer(map, layerURL_closures, layerOptions_closures)
+     .on('done', function(layer) {
+      map.addLayer(layer);
+      layers.push(layer);
+    }).on('error', function() {
+      //log the error
+    });
+	
+	//checkbox for the proposed closures	
+	$('#c2').click(function() {
+		if ($(this).is(':checked')) {
+            layers[2].setQuery("SELECT * FROM philadelphiaschools201201_closures  WHERE action IS NOT NULL AND facil_type = 'School' AND grade_leve ='High School'");
+			layers[2].setCartoCSS("#philadelphiaschools201201_closures  {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 1; marker-width: 4; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
+			return true;
+        }
+		else{
+			layers[2].setQuery("SELECT * FROM philadelphiaschools201201_closures ");
+			layers[2].setCartoCSS("#philadelphiaschools201201_closures  {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 0; marker-line-opacity: 0; }} ");
+			return true;
+		}
+	});
 	
 
 	
@@ -92,8 +120,6 @@ var map;
       $('.button').removeClass('selected'); $(this).addClass('selected');
       LayerActions[$(this).attr('id')]();
     })	
-
-	
 
 	function legendClear(){
 		$("#legend").empty();
@@ -159,6 +185,7 @@ var map;
 		  return true;
         }	
     }	
+
 
 
 	
