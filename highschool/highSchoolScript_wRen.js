@@ -21,7 +21,7 @@ var map;
            "#2E3F8A": "High (32.9 to 100%)",
 		   "#4A60C3": "Above average (26.4 to 32.8%)",
 		   "#8A98D8": "Below average (20.0 to 26.3%)",
-		   "#CAD0ED": "Low (0 to 19.9%)",
+		   "#CAD0ED": "Low (0 to 19.9%)"
 
         };
 
@@ -29,7 +29,7 @@ var map;
 	      "#2E3F8A": "High (26.8 to 100%)",
 		  "#4A60C3": "Above average (18.4 to 26.7%)",
 		  "#8A98D8": "Below average (10.0 to 18.3%)",
-		  "#CAD0ED": "Low (0 to 9.9%)",
+		  "#CAD0ED": "Low (0 to 9.9%)"
 
         };
 		
@@ -37,11 +37,7 @@ var map;
           "#2E3F8A": "High (14.4 to 100%)",
 		  "#4A60C3": "Above average (11.2 to 14.3%)",
 		  "#8A98D8": "Below average (8.1 to 11.1%)",
-		  "#CAD0ED": "Low (0 to 8.0%)",
-		  
-          
-          
-		  
+		  "#CAD0ED": "Low (0 to 8.0%)" 
         };
 	
 	var title_nabe = 'Percent of students attending their own NEIGHBORHOOD HIGH SCHOOL'; 
