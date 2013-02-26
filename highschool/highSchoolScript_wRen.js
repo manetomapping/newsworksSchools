@@ -7,7 +7,7 @@ var map;
 	
     // initiate leaflet map
     map = new L.Map('map', { 
-      center: [ 40.03,-75.130606],
+      center: [ 40.01,-75.130606],
       zoom: 11
     })
 	
@@ -16,12 +16,14 @@ var map;
 		  "#4A60C3": "<strong>Above average</strong> (30.7 to 40.6%)",
 		  "#8A98D8": "<strong>Below average</strong> (20.7 to 30.6%)",
 		   "#CAD0ED": "<strong>Low</strong> (0 to 20.6%)"
+
         };
 	bins_charter = {
            "#2E3F8A": "<strong>High</strong> (32.9 to 100%)",
 		   "#4A60C3": "<strong>Above average</strong> (26.4 to 32.8%)",
 		   "#8A98D8": "<strong>Below average</strong> (20.0 to 26.3%)",
 		   "#CAD0ED": "<strong>Low</strong> (0 to 19.9%)"
+
 
         };
 
@@ -31,6 +33,7 @@ var map;
 		  "#8A98D8": "<strong>Below average</strong> (10.0 to 18.3%)",
 		  "#CAD0ED": "<strong>Low</strong> (0 to 9.9%)"
 
+
         };
 		
 	bins_cityWide = {
@@ -38,13 +41,14 @@ var map;
 		  "#4A60C3": "<strong>Above average</strong> (11.2 to 14.3%)",
 		  "#8A98D8": "<strong>Below average</strong> (8.1 to 11.1%)",
 		  "#CAD0ED": "<strong>Low</strong> (0 to 8.0%)" 
+
         };
 	
 	var title_nabe = 'Percent of students attending their own <span style="text-decoration:underline;">neighborhood</span> high school'; 
 	var title_charter = 'Percent of students attending a <span style="text-decoration:underline;">charter</span> high school';
 	var title_specAdmit = 'Percent of students attending a <span style="text-decoration:underline;">magnet</span> high school';
 	var title_cityWide = 'Percent of students attending a <span style="text-decoration:underline;">citywide, vo-tech, or military</span> high school';
-	
+
     L.tileLayer('https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/{z}/{x}/{y}.png', {
       attribution: 'MapBox'
     }).addTo(map);
@@ -61,9 +65,10 @@ var map;
 	}
 
 	var layerOptions_HSCatch = {
-			  query: 'SELECT total as "Total public school students in attendance zone", p_innabe as "% attending own NEIGHBORHOOD HIGH SCHOOL", pcharterall as "% attending a CHARTER", pspecadmit as "% attending a MAGNET HIGH SCHOOL",pcitymiltcte as "% attending a CITYWIDE, VO-TECH, OR MILITARY HIGH SCHOOL", * FROM newsworks_hscatchment',
-			  tile_style: "#newsworks_hscatchment{line-color: #FFF;line-opacity: 0.7;line-width: 0.5;polygon-opacity: 0.8;}#newsworks_hscatchment [ p_innabe <= 100] {polygon-fill: #2E3F8A;}#newsworks_hscatchment [ p_innabe <= 40.7] {polygon-fill: #4A60C3;} #newsworks_hscatchment [ p_innabe <= 30.7] {polygon-fill: #8A98D8;}#newsworks_hscatchment [ p_innabe <= 20.7]{polygon-fill: #CAD0ED;}"
-	}
+			  query: 'SELECT * FROM newsworks_hscatchment',
+			  tile_style: "#newsworks_hscatchment{line-color: #FFF;line-opacity: 0.7;line-width: 0.5;polygon-opacity: 0.8;}#newsworks_hscatchment [ p_innabe <= 100] {polygon-fill: #2E3F8A;}#newsworks_hscatchment [ p_innabe <= 40.7] {polygon-fill: #4A60C3;} #newsworks_hscatchment [ p_innabe <= 30.7] {polygon-fill: #8A98D8;}#newsworks_hscatchment [ p_innabe <= 20.7]{polygon-fill: #CAD0ED;}",
+			  interactivity: "cartodb_id,p_innabe,pcharterall,hs_short,total,managed,pcitymiltcte,pother,psdp_out,pspecadmit"
+			  }
 	
 	var layerOptions_closures = {
 			query: 'SELECT * FROM philadelphiaschools201201_closures',
@@ -75,11 +80,13 @@ var map;
 	//add polygons first
 	cartodb.createLayer(map, layerUrl_HSCatch, layerOptions_HSCatch)
      .on('done', function(layer) {
-      map.addLayer(layer);
+	  map.addLayer(layer);
       layers.push(layer);
-    }).on('error', function() {
-      //log the error
-    });
+	 layer
+		.on('error', function() {
+    })
+		.infowindow.set('template', $('#infowindow_template').html())
+	});
     //add the legend
 	CartoDBLegend(bins_nabe,title_nabe);
 	//add corresponding schools layer next
@@ -87,9 +94,11 @@ var map;
      .on('done', function(layer) {
       map.addLayer(layer);
       layers.push(layer);
+	  
     }).on('error', function() {
       //log the error
-    });
+	});
+	
 	//add closures on top
 	cartodb.createLayer(map, layerURL_closures, layerOptions_closures)
      .on('done', function(layer) {
@@ -98,6 +107,9 @@ var map;
     }).on('error', function() {
       //log the error
     });
+	
+	//infowindows 
+	//set up interactivity
 	
 	//checkbox for the proposed closures	
 	$('#c2').click(function() {

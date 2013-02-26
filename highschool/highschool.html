@@ -13,25 +13,51 @@
 High schools</h1>
 <p>Select a school type to see citywide patterns. <br />Select a neighborhood attendance zone to see what types of schools students actually attend.</p></div>
   <div id="mapheader"> 
-  
     <ul id='menu' class="menubuttons">
 	 <li><a href="#pneighborhood" id="pneighborhood" class="button pneighborhood first selected">Neighborhood</a> </li>
 	 <li><a href="#pcharter" id="pcharter" class="button pcharter">Charter</a> </li> 
 	<li> <a href="#pSpecAdmit" id="pSpecAdmit" class="button pSpecAdmit ">Magnet</a> </li>
 	<li><a href="#pCitywide" id="pCitywide" class="button pCitywide last">Citywide</a> </li>
-	 
     </ul>
- 
+
   </div>
 	   
   <div id ='legend'></div>
   
   <div id="show">
          
-                      
-            <input type="checkbox" id="c2" name="cc" />
-            <label for="c2"><span></span>Show recommended closings</label>
+
+             <input type="checkbox" id="c2" name="cc" />
+             <label for="c2"><span></span>Show proposed closures</label>
+
     
    </div>
+   <script type="infowindow/html" id="infowindow_template">
+      <div class="cartodb-popup">
+        <a href="#close" class="cartodb-popup-close-button close">x</a>
+         <div class="cartodb-popup-content-wrapper">
+           <div class="cartodb-popup-cont">
+            <h4>{{content.data.name}}</h4>
+			<p>{{content.data.managed}}</p>
+			<h3>Total public school students in attendance zone</h3>
+			<p>{{content.data.total}}</p>
+			<h3>% attending own neighbohood high school</h3>
+			<p>{{content.data.p_innabe}} </p>
+			<h3>% attending a charter</h3>
+            <p>{{content.data.pcharterall}} </p>
+			<h3>% attending a magnet high school</h3>
+			<p>{{content.data.pspecadmit}} </p>
+			<h3>% attending a citywide, vo-tech, or military high school</h3>
+			<p>{{content.data.pcitymiltcte}} </p>
+			<h3>% attending other District high school</h3>
+			<p>{{content.data.psdp_out}} </p>
+			<h3>% attending alternative & non-traditional programs</h3>
+			<p>{{content.data.pother}} </p>
+			
+           </div>
+         </div>
+         <div class="cartodb-popup-tip-container"></div>
+      </div>
+    </script>
 </body>
 </html>
