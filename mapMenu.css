@@ -172,4 +172,68 @@ input[type="checkbox"]:checked + label span {
     #legend .row span.line { width: 20px; height: 6px; background: black; margin: 2px; margin-top: 11px; border: 1px solid #BBB;}
     #legend .row span.circle { width: 20px; height: 20px; background: black; margin: 2px; border: 1px solid #BBB; border-radius: 50%;}
 
+	
+/*SYLES FOR THE CUSTOM INFOWINDOW*/
+
+div.cartodb-popup {
+background: none;
+width: 240px;
+padding: 0;
+-moz-border-radius-topright: 4px;
+border-top-right-radius: 4px;
+-moz-border-radius-toplleft: 4px;
+border-top-left-radius: 4px;
+box-shadow: 0 0 9px rgba(0,0,0,0.4);
+}
+
+div.cartodb-popup a.cartodb-popup-close-button{
+top: -12px;
+right: -13px;
+}
+
+div.cartodb-popup div.cartodb-popup-content-wrapper{
+padding: 0;
+width: 240px;
+max-width: none;
+background: none;
+background-color: #FFF;
+-moz-border-radius-topright: 4px;
+border-top-right-radius: 4px;
+-moz-border-radius-toplleft: 4px;
+border-top-left-radius: 4px;
+}
+
+div.cartodb-popup div.cartodb-popup-cont{
+width: 248px;
+max-width: none;
+max-height: none;
+}
+
+div.cartodb-popup div.cartodb-popup-cont h4{
+font-family: Times New Roman, Times, serif;
+font-size: 12px;
+padding: 5px 0px 5px 15px;
+}
+
+div.cartodb-popup div.cartodb-popup-cont h3{
+font-family: Helvetica, Arial, Sans-serif;
+font-size: 12px;
+padding: 5px 0px 0px 15px;
+}
+
+div.cartodb-popup div.cartodb-popup-cont p{
+font-family: Helvetica, Arial, Sans-serif;
+font-size: 12px;
+padding: 5px 0px 0px 15px;
+
+}
+
+
+div.cartodb_infobox {
+bottom:35px!important;
+font-family: "Helvetica",Arial;
+}
+
+
+
     #legend .row span.value { line-height: 18px; margin: 5px; max-width: 192px;}

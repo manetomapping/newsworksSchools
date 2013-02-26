@@ -3,17 +3,12 @@
 	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.css" />
 	<link rel="stylesheet" href="../mapMenu.css" />
 	<script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
-	<script src="highSchoolScript_wRen.js"> </script>
+	<script src="highSchoolScript_wRen_working.js"> </script>
 
 </head>
 <body onload="init()">
   <div id='map'></div>
-  <div id='title'>
-  	<h1>Public school choice in Philadelphia: 
-High schools</h1>
-<p>Select a school type to see citywide patterns. Select a neighborhood attendance zone to see what types of schools students actually attend.</p></div>
   <div id="mapheader"> 
-  
     <ul id='menu' class="menubuttons">
 	 <li><a href="#pneighborhood" id="pneighborhood" class="button pneighborhood first selected">Neighborhood</a> </li>
 	 <li><a href="#pcharter" id="pcharter" class="button pcharter">Charter</a> </li> 
@@ -21,17 +16,52 @@ High schools</h1>
 	<li><a href="#pCitywide" id="pCitywide" class="button pCitywide last">Citywide</a> </li>
 	 
     </ul>
- 
+   
+ <!--
+	 <ul id="submenu" class="menubuttons">
+	  	 
+	 	<li><a href="#close" id="close" class="button close"></a>Show Proposed Closures</li> 
+	 	<li><a href="#none" id="none" class="button none selected ">Hide Schools</a></li> 
+	 </ul>--> 
   </div>
 	   
   <div id ='legend'></div>
   
   <div id="show">
          
-                      
+            <input type="checkbox" id="c1" checked="true" name="cc" />
+            <label for="c1"><span></span>Show corresponding schools</label>
+           
             <input type="checkbox" id="c2" name="cc" />
             <label for="c2"><span></span>Show proposed closures</label>
     
    </div>
+   <script type="infowindow/html" id="infowindow_template">
+      <div class="cartodb-popup">
+        <a href="#close" class="cartodb-popup-close-button close">x</a>
+         <div class="cartodb-popup-content-wrapper">
+           <div class="cartodb-popup-cont">
+            <h4>{{content.data.name}}</h4>
+			<p>{{content.data.managed}}</p>
+			<h3>Total public school students in attendance zone</h3>
+			<p>{{content.data.total}}</p>
+			<h3>% attending own Neighbohood High School</h3>
+			<p>{{content.data.p_innabe}} </p>
+			<h3>% attending a Charter</h3>
+            <p>{{content.data.pcharterall}} </p>
+			<h3>% attending a Magnet High School</h3>
+			<p>{{content.data.pspecadmit}} </p>
+			<h3>% attending a Citywide, Vo-Tech, or Military High School</h3>
+			<p>{{content.data.pcitymiltcte}} </p>
+			<h3>% attending Other District High School</h3>
+			<p>{{content.data.psdp_out}} </p>
+			<h3>% attending Alternative & Non-Traditional Programs</h3>
+			<p>{{content.data.pother}} </p>
+			
+           </div>
+         </div>
+         <div class="cartodb-popup-tip-container"></div>
+      </div>
+    </script>
 </body>
 </html>
