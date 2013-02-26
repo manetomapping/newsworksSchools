@@ -8,32 +8,25 @@
 </head>
 <body onload="init()">
   <div id='map'></div>
+    <div id='title'>
+ 	<h1>Public school choice in Philadelphia: High schools</h1>
+ <p>Select a school type to see citywide patterns. Select a neighborhood attendance zone to see what types of schools students actually attend.</p></div>
   <div id="mapheader"> 
     <ul id='menu' class="menubuttons">
 	 <li><a href="#pneighborhood" id="pneighborhood" class="button pneighborhood first selected">Neighborhood</a> </li>
 	 <li><a href="#pcharter" id="pcharter" class="button pcharter">Charter</a> </li> 
 	<li> <a href="#pSpecAdmit" id="pSpecAdmit" class="button pSpecAdmit ">Magnet</a> </li>
 	<li><a href="#pCitywide" id="pCitywide" class="button pCitywide last">Citywide</a> </li>
-	 
     </ul>
-   
- <!--
-	 <ul id="submenu" class="menubuttons">
-	  	 
-	 	<li><a href="#close" id="close" class="button close"></a>Show Proposed Closures</li> 
-	 	<li><a href="#none" id="none" class="button none selected ">Hide Schools</a></li> 
-	 </ul>--> 
+
   </div>
 	   
   <div id ='legend'></div>
   
   <div id="show">
          
-            <input type="checkbox" id="c1" checked="true" name="cc" />
-            <label for="c1"><span></span>Show corresponding schools</label>
-           
-            <input type="checkbox" id="c2" name="cc" />
-            <label for="c2"><span></span>Show proposed closures</label>
+             <input type="checkbox" id="c2" name="cc" />
+             <label for="c2"><span></span>Show proposed closures</label>
     
    </div>
    <script type="infowindow/html" id="infowindow_template">
@@ -45,17 +38,17 @@
 			<p>{{content.data.managed}}</p>
 			<h3>Total public school students in attendance zone</h3>
 			<p>{{content.data.total}}</p>
-			<h3>% attending own Neighbohood High School</h3>
+			<h3>% attending own neighbohood high school</h3>
 			<p>{{content.data.p_innabe}} </p>
-			<h3>% attending a Charter</h3>
+			<h3>% attending a charter</h3>
             <p>{{content.data.pcharterall}} </p>
-			<h3>% attending a Magnet High School</h3>
+			<h3>% attending a magnet high school</h3>
 			<p>{{content.data.pspecadmit}} </p>
-			<h3>% attending a Citywide, Vo-Tech, or Military High School</h3>
+			<h3>% attending a citywide, vo-tech, or military high school</h3>
 			<p>{{content.data.pcitymiltcte}} </p>
-			<h3>% attending Other District High School</h3>
+			<h3>% attending other District high school</h3>
 			<p>{{content.data.psdp_out}} </p>
-			<h3>% attending Alternative & Non-Traditional Programs</h3>
+			<h3>% attending alternative & non-traditional programs</h3>
 			<p>{{content.data.pother}} </p>
 			
            </div>
