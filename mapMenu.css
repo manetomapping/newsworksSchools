@@ -27,8 +27,8 @@ html, body {padding: 0; margin: 0; }
 		border-radius: 5px;
 }
 
-#title h1 {font-stlye: bold; font-size: 19px; margin-bottom: 2px;}
-#title p {font-stlye: bold; font-size: 12px; margin-top: 2px;}
+#title h1 {font-weight: bold; font-size: 19px; margin-bottom: 2px;}
+#title p {color: #ccc; font-weight: bold; font-size: 11px; margin-top: 2px;}
 
 #menu a.selected { 
      color: #000;
@@ -104,14 +104,14 @@ a:active {
 	height: 0;
 }
 
-* html #menu             { zoom: 1; } /* IE6 */
+* html #menu { zoom: 1; } /* IE6 */
 
 /* checkboxes */
 div#show {
 	font-weight: bold;
     padding:5px 0 0 20px;
     background:#737373;
-    position: absolute; top: 123; left: 72; width: 200px; height:26px;
+    position: absolute; top: 123; left: 72; width: 220px; height:26px;
 	margin: 12px 0 0 0px;
 	-moz-box-shadow: inset 0px 0px 5px #000;
 	-webkit-box-shadow: inset 0px 0px 5px #000;
@@ -147,7 +147,7 @@ input[type="checkbox"]:checked + label span {
 
 /* END CHECKBOXES */
            
-#legend { position: absolute; left: 333px; top: 470px; width: 235px; padding: 0px;  
+#legend { position: absolute; left: 333px; top: 480px; width: 235px; padding: 0px;  
 			background: -webkit-linear-gradient(#F9F9F9, #E1E1E1); 
 			background: -moz-linear-gradient(#F9F9F9, #E1E1E1);
 			background: -o-linear-gradient(#F9F9F9, #E1E1E1);
