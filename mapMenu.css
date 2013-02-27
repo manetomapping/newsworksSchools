@@ -256,13 +256,15 @@ div.cartodb-popup div.cartodb-popup-cont h3{
 font-family: Helvetica, Arial, Sans-serif;
 font-size: 12px;
 padding: 5px 0px 0px 15px;
+font-weight: normal;
+color: grey;
 }
 
 div.cartodb-popup div.cartodb-popup-cont p{
 font-family: Helvetica, Arial, Sans-serif;
-font-size: 12px;
+font-size: 14px;
 padding: 5px 0px 0px 15px;
-
+font-weight: bold;
 }
 
 
