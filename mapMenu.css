@@ -147,7 +147,7 @@ input[type="checkbox"]:checked + label span {
 
 /* END CHECKBOXES */
            
-#legend { position: absolute; left: 333px; top: 480px; width: 235px; padding: 0px;  
+#legend { position: absolute; left: 340px; top: 470px; width: 235px; padding: 0px;  
 			background: -webkit-linear-gradient(#F9F9F9, #E1E1E1); 
 			background: -moz-linear-gradient(#F9F9F9, #E1E1E1);
 			background: -o-linear-gradient(#F9F9F9, #E1E1E1);
@@ -237,6 +237,7 @@ background-color: none;
 border-top-right-radius: 4px;
 -moz-border-radius-toplleft: 12px;
 border-top-left-radius: 12px;
+ 
 }
 
 div.cartodb-popup div.cartodb-popup-cont{
@@ -312,9 +313,28 @@ font-family: "Helvetica",Arial;
       padding:10px;
       z-index:1000;
       display:none;
-      background:white;
-      border-color:#DDDDDD!important;
-      font:normal 12px Arial!important;
-      color:#666666!important;
+      background: #eeeeee; /* Old browsers */
+      background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* IE10+ */
+      background: linear-gradient(to bottom,  #eeeeee 0%,#cccccc 100%); /* W3C */      border-color:#DDDDDD!important;
+      font:normal 14px Arial!important;
+      color:#111 !important;
+      font-weight:bold !important;
+		padding: 5px 0 0 10px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		-moz-box-shadow: 0 0 1px 1px #9c9c9c;
+		-webkit-box-shadow: 0 0 1px 1px #9c9c9c;
+		box-shadow: 0px 0px 14px 2px #000;
+	
+	
     }
-    #tooltip label {font-weight:bold; width: 100%;}
+       
+#tooltip p {padding-right: 5px;}
+    
+.cartodb_logo {display: none !important;} 
+.logos {position:absolute; bottom:10px; left:0; display:block; border:none; z-index:10000;}

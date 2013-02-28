@@ -53,7 +53,7 @@ var map;
 	var title_cityWide = 'Percent of students attending a <span style="text-decoration:underline;">citywide, vo-tech, or military</span> high school';
 
     L.tileLayer('https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/{z}/{x}/{y}.png', {
-      attribution: 'MapBox'
+      attribution: 'Map by Michelle Schmitt and Todd Vachon for <a href="http://www.newsworks.org">NewsWorks.org</a>'
     }).addTo(map);
 	
 
