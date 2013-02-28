@@ -303,4 +303,18 @@ font-family: "Helvetica",Arial;
 ::-webkit-scrollbar-thumb:window-inactive {
 	background: rgba(0,0,0,0.4); 
 }
-
+/* Tool tip */
+    #tooltip {
+      position:absolute;
+      right: 100px;
+      width:140px;
+      height:auto;
+      padding:10px;
+      z-index:1000;
+      display:none;
+      background:white;
+      border-color:#DDDDDD!important;
+      font:normal 12px Arial!important;
+      color:#666666!important;
+    }
+    #tooltip label {font-weight:bold; width: 100%;}
