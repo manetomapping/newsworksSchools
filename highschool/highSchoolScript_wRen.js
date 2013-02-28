@@ -1,5 +1,6 @@
 var map;
 
+
   function init(){
     //initiate variables
 	var bins = {};
@@ -10,6 +11,8 @@ var map;
       center: [ 40.01,-75.130606],
       zoom: 11
     })
+
+
 	
 	bins_nabe = {
           "#2E3F8A": "<strong>High</strong> (40.7 to 100%)",
@@ -52,6 +55,8 @@ var map;
     L.tileLayer('https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/{z}/{x}/{y}.png', {
       attribution: 'MapBox'
     }).addTo(map);
+	
+
     
 	var layerUrl_schools = 'http://manetomapping.cartodb.com/api/v1/viz/19592/viz.json';
 	var layerUrl_HSCatch = 'http://manetomapping.cartodb.com/api/v1/viz/19503/viz.json';
@@ -61,18 +66,30 @@ var map;
     var layerOptions_schools = {
              query: "SELECT * FROM philadelphiaschools201201 WHERE instit_typ = 'District' AND grade_leve = 'High School' AND facil_type = 'School' AND active = 'y' AND type IS NULL",
               //tile_style: "#{{table_name}}{marker-fill: #F84F40; marker-width: 8; marker-line-color: white; marker-line-width: 2; marker-clip: false; marker-allow-overlap: true;} "
-	     tile_style: "#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFFFF;marker-opacity: .7; marker-width: 4; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} "
+	     tile_style: "#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFFFF;marker-opacity: .7; marker-width: 4; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ",
+			interactivity: "facil_name",
+			infowindow: false,
+			cartodb_logo: false
+			
+			
+			
+			
 	}
 
 	var layerOptions_HSCatch = {
 			  query: 'SELECT * FROM newsworks_hscatchment',
 			  tile_style: "#newsworks_hscatchment{line-color: #FFF;line-opacity: 0.7;line-width: 0.5;polygon-opacity: 0.8;}#newsworks_hscatchment [ p_innabe <= 100] {polygon-fill: #2E3F8A;}#newsworks_hscatchment [ p_innabe <= 40.7] {polygon-fill: #4A60C3;} #newsworks_hscatchment [ p_innabe <= 30.7] {polygon-fill: #8A98D8;}#newsworks_hscatchment [ p_innabe <= 20.7]{polygon-fill: #CAD0ED;}",
-			  interactivity: "cartodb_id,p_innabe,pcharterall,hs_short,total,managed,pcitymiltcte,pother,psdp_out,pspecadmit"
+			  interactivity: "cartodb_id,p_innabe,pcharterall,hs_short,total,managed,pcitymiltcte,pother,psdp_out,pspecadmit",
+			  cartodb_logo: false
 			  }
 	
 	var layerOptions_closures = {
 			query: 'SELECT * FROM philadelphiaschools201201_closures',
-			tile_style: "#philadelphiaschools201201_closures {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 0; marker-width: 4; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} "
+			tile_style: "#philadelphiaschools201201_closures {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 0; marker-width: 4; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ",
+			interactivity: "facil_name",
+			cartodb_logo: false,
+			infowindow: false
+			
 	}
 	
     var layers = [];
@@ -89,27 +106,46 @@ var map;
 	});
     //add the legend
 	CartoDBLegend(bins_nabe,title_nabe);
+	
 	//add corresponding schools layer next
     cartodb.createLayer(map, layerUrl_schools, layerOptions_schools)
      .on('done', function(layer) {
       map.addLayer(layer);
       layers.push(layer);
-	  
-    }).on('error', function() {
-      //log the error
-	});
+	 layer
+	 .on('error', function() {
+	})
+	  .on('featureOver', function(e, latlng, pos, data) {
+	// Set popup content
+		document.body.style.cursor = "pointer";
+		showTooltip(data,pos)
+	})
+	  .on('featureOut', function(e, latlng, pos, data) {
+		document.body.style.cursor = "default";
+		hideTooltip();
+	})
 	
+	
+	});
 	//add closures on top
 	cartodb.createLayer(map, layerURL_closures, layerOptions_closures)
      .on('done', function(layer) {
       map.addLayer(layer);
       layers.push(layer);
-    }).on('error', function() {
-      //log the error
-    });
-	
-	//infowindows 
-	//set up interactivity
+	  layer
+	  .on('error', function() {
+    })
+	  .on('featureOver', function(e, latlng, pos, data) {
+	// Set popup content
+		document.body.style.cursor = "pointer";
+		showTooltip(data,pos)
+	})
+	  .on('featureOut', function(e, latlng, pos, data) {
+		document.body.style.cursor = "default";
+		hideTooltip();
+	})
+
+	 });
 	
 	//checkbox for the proposed closures	
 	$('#c2').click(function() {
@@ -198,8 +234,40 @@ var map;
         }	
     }	
 
+//show tool tip 
+ function showTooltip(data,point) {
+      var html = "";
+     
+      var name = (data["facil_name"]!="")?data["facil_name"]:"Unknown";
+      html += "<p>" + name +"</p>";
 
+           
+      $("#tooltip").html(html);
+      $("#tooltip").css({left: (point.x + 15) + 'px', top: point.y - ($("#tooltip").height()) + 10 + 'px'})
+      $("#tooltip").show();
+    }
+ 
+    function hideTooltip() {
+      $("#tooltip").hide();
+    }
 
 	
 	
   }
+function showTooltip(data,point) {
+  var html = "";
+
+  var name = (data["namelsad10"]!="")?data["namelsad10"]:"Unknown";
+
+
+  html += "<br><label>" + name +"</label>";
+  html += "<br><label>Pop." + data["pop100"] +"</label></p>";
+
+  $("#tooltip").html(html);
+  $("#tooltip").css({left: (point.x + 15) + 'px', top: point.y - ($("#tooltip").height()) + 10 + 'px'})
+  $("#tooltip").show();
+}
+
+function hideTooltip() {
+  $("#tooltip").hide();
+}
