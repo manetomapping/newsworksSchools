@@ -84,8 +84,8 @@ var map;
 			  }
 	
 	var layerOptions_closures = {
-			query: 'SELECT * FROM philadelphiaschools201201_closures',
-			tile_style: "#philadelphiaschools201201_closures {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 0; marker-width: 4; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ",
+			query: "SELECT * FROM philadelphiaschools201201_closures where cartodb_id = 0 ",
+			tile_style: "#philadelphiaschools201201_closures  {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 1; marker-width: 4; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ",
 			interactivity: "facil_name",
 			cartodb_logo: false,
 			infowindow: false
@@ -138,25 +138,26 @@ var map;
 	  .on('featureOver', function(e, latlng, pos, data) {
 	// Set popup content
 		document.body.style.cursor = "pointer";
-		showTooltip(data,pos)
+		showTooltip_closures(data,pos)
 	})
 	  .on('featureOut', function(e, latlng, pos, data) {
 		document.body.style.cursor = "default";
-		hideTooltip();
+		hideTooltip_closures();
 	})
 
 	 });
+	 
 	
 	//checkbox for the proposed closures	
 	$('#c2').click(function() {
 		if ($(this).is(':checked')) {
-            layers[2].setQuery("SELECT * FROM philadelphiaschools201201_closures  WHERE action IS NOT NULL AND facil_type = 'School' AND grade_leve ='High School'");
+			layers[2].setQuery("SELECT * FROM philadelphiaschools201201_closures  WHERE action IS NOT NULL AND facil_type = 'School' AND grade_leve ='High School'");
 			layers[2].setCartoCSS("#philadelphiaschools201201_closures  {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 1; marker-width: 4; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
 			return true;
         }
 		else{
-			layers[2].setQuery("SELECT * FROM philadelphiaschools201201_closures ");
-			layers[2].setCartoCSS("#philadelphiaschools201201_closures  {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 0; marker-line-opacity: 0; }} ");
+			layers[2].setQuery("SELECT * FROM philadelphiaschools201201_closures where cartodb_id = 0 ");
+			//layers[2].setCartoCSS("#philadelphiaschools201201_closures  {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 0; marker-line-opacity: 0; }} ");
 			return true;
 		}
 	});
@@ -197,11 +198,6 @@ var map;
       none: function(){
           layers[1].setQuery("SELECT * FROM philadelphiaschools201201");
 		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 0; marker-line-opacity: 0; }} ");
-          return true;
-        },
-      close: function(){
-          layers[1].setQuery("SELECT * FROM philadelphiaschools201201 WHERE action IS NOT NULL AND facil_type = 'School' AND grade_leve ='High School'");
-		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 1; marker-width: 4; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
           return true;
         },
 	  pcharter: function(){
@@ -251,23 +247,26 @@ var map;
       $("#tooltip").hide();
     }
 
-	
+	//show tool tip for closing schools
+ function showTooltip_closures(data,point) {
+      var html = "";
+     
+      var name = (data["facil_name"]!="")?data["facil_name"]:"Unknown";
+      html += "<p>" + name +"</p>";
+
+           
+      $("#tooltip_closures").html(html);
+      $("#tooltip_closures").css({left: (point.x + 15) + 'px', top: point.y - ($("#tooltip_closures").height()) + 10 + 'px'})
+      $("#tooltip_closures").show();
+    }
+ 
+    function hideTooltip_closures() {
+      $("#tooltip_closures").hide();
+    }
+
 	
   }
-function showTooltip(data,point) {
-  var html = "";
 
-  var name = (data["namelsad10"]!="")?data["namelsad10"]:"Unknown";
-
-
-  html += "<br><label>" + name +"</label>";
-  html += "<br><label>Pop." + data["pop100"] +"</label></p>";
-
-  $("#tooltip").html(html);
-  $("#tooltip").css({left: (point.x + 15) + 'px', top: point.y - ($("#tooltip").height()) + 10 + 'px'})
-  $("#tooltip").show();
-}
-
-function hideTooltip() {
-  $("#tooltip").hide();
-}
+	
+	
+  
