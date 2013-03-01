@@ -185,6 +185,7 @@ var map;
 	  pneighborhood: function(){
 		  layers[0].setCartoCSS("#newsworks_elemcatch{line-color: #FFF;line-opacity: .8;line-width: .5;polygon-opacity: 0.9;}#newsworks_elemcatch [ p_innabe <= 100] {polygon-fill: #AE017E;}#newsworks_elemcatch [ p_innabe <= 74.6] {polygon-fill: #F768A1;}#newsworks_elemcatch [ p_innabe <= 62.9] {polygon-fill: #FBB4B9;} #newsworks_elemcatch [ p_innabe <= 51.1] {polygon-fill: #FEEBE2;}");
 		  layers[1].setCartoCSS("#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFFFF;marker-opacity: .7; marker-width: 4; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ");
+		  layers[1].setQuery("SELECT * FROM philadelphiaschools201201 WHERE instit_typ = 'District' AND grade_leve = 'Elementary School' AND facil_type = 'School' AND active = 'y' AND type IS NULL");
 		  CartoDBLegend(bins_nabe,title_nabe);
 		  return true;
     }	
