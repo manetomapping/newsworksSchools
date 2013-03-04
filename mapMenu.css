@@ -331,7 +331,7 @@ font-family: "Helvetica",Arial;
 	background: rgba(0,0,0,0.4); 
 }
 /* Tool tip */
-    #tooltip {
+    #tooltip,#tooltip_closures {
       position:absolute;
       right: 100px;
       width:140px;
