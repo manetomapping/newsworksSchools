@@ -32,7 +32,7 @@ var map;
 
 
     L.tileLayer('https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/{z}/{x}/{y}.png', {
-      attribution: 'Map by Michelle Schmitt and Todd Vachon for <a href="http://www.newsworks.org">NewsWorks.org</a>'
+      attribution: 'Map by <a href="http://www.manetomapping.com">Michelle Schmitt</a> and Todd Vachon for <a href="http://www.newsworks.org">NewsWorks.org</a>'
     }).addTo(map);
 	
 
