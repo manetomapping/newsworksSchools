@@ -70,6 +70,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
 	
 }
 
+.menubuttons li {
+	float: left;
+}
+
 
 .menubuttons a{
 	float: left;
