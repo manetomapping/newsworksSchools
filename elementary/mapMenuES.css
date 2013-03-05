@@ -1,7 +1,7 @@
 <!-- START EDIT -->
 
 html, body {padding: 0; margin: 0; }
-    #map { width: 600px; height:700px; background: black; }
+    #map { width: 590px; height:710px; background: black; }
            
                 
 
@@ -35,7 +35,7 @@ html, body {padding: 0; margin: 0; }
 		z-index: 1;
 }
 
-#title h1 {font-weight: bold; font-size: 19px; margin-bottom: 2px;}
+#title h1 {font-weight: bold; font-size: 18px; margin-bottom: 2px;}
 #title p {color: #ccc; font-weight: bold; font-size: 11px; margin-top: 2px;}
 
 #menu-es a.selected { 
@@ -68,14 +68,19 @@ html, body {padding: 0; margin: 0; }
 .menubuttons {
 	list-style: none;  
 	background: #eeeeee; /* Old browsers */
-	background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  #eeeeee 0%,#cccccc 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+	background-image: linear-gradient(bottom, #CCCCCC 23%, #EEEEEE 81%);
+	background-image: -o-linear-gradient(bottom, #CCCCCC 23%, #EEEEEE 81%);
+	background-image: -moz-linear-gradient(bottom, #CCCCCC 23%, #EEEEEE 81%);
+	background-image: -webkit-linear-gradient(bottom, #CCCCCC 23%, #EEEEEE 81%);
+	background-image: -ms-linear-gradient(bottom, #CCCCCC 23%, #EEEEEE 81%);
 
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.23, #CCCCCC),
+		color-stop(0.81, #EEEEEE)
+	);
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	-moz-box-shadow: 0 0 1px 1px #9c9c9c;
@@ -91,15 +96,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
 
 .menubuttons a{
 	float: left;
-	height: 25px;
-	padding: 12px 30px 0  30px;
+	height: 100%;
+	padding: 12px 30px 10px 30px;
 	color: #444;
 	text-transform: uppercase;
 	font: bold 12px Arial, Helvetica;
 	text-decoration: none;
-	/* text-shadow: 0 1px 0 #000; */
 	border-right: 1px solid #fff;
 	border-left: 1px solid #777;
+	border-right: 1px solid #fff;
+	border-left: 1px solid #777;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
 a:active {
@@ -138,7 +147,7 @@ div#show-es {
 	-moz-box-shadow: inset 0px 0px 5px #000;
 	-webkit-box-shadow: inset 0px 0px 5px #000;
 	box-shadow: inset 0px 0px 5px #000;
-	position: absolute; top: 143; left: 72;
+	 position: absolute; top: 143; left: 72; 
 }
 
 
@@ -170,12 +179,26 @@ input[type="checkbox"]:checked + label span {
 
 /* END CHECKBOXES */
            
-#legend { position: absolute; left: 340px; top: 470px; width: 235px; padding: 0px;  
-			background: -webkit-linear-gradient(#F9F9F9, #E1E1E1); 
-			background: -moz-linear-gradient(#F9F9F9, #E1E1E1);
-			background: -o-linear-gradient(#F9F9F9, #E1E1E1);
-            background: linear-gradient(#F9F9F9,#E1E1E1); 
-			z-index: 99; font-family: Arial, Helvetica, sans-serif;
+#legend { position: absolute; 
+			left: 340px; 
+			top: 470px; 			
+			width: 235px; 
+			padding: 0px; 
+			background: #eee; 
+			background-image: linear-gradient(bottom, #E1E1E1 23%, #F9F9F9 81%);
+			background-image: -o-linear-gradient(bottom, #E1E1E1 23%, #F9F9F9 81%);
+			background-image: -moz-linear-gradient(bottom, #E1E1E1 23%, #F9F9F9 81%);
+			background-image: -webkit-linear-gradient(bottom, #E1E1E1 23%, #F9F9F9 81%);
+			background-image: -ms-linear-gradient(bottom, #E1E1E1 23%, #F9F9F9 81%);
+			background-image: -webkit-gradient(
+				linear,
+				left bottom,
+				left top,
+				color-stop(0.23, #E1E1E1),
+				color-stop(0.81, #F9F9F9)
+			);			
+			z-index: 99; 
+			font-family: Arial, Helvetica, sans-serif;
 			-webkit-border-radius: 5px;
 			-moz-border-radius: 5px;
 			border-radius: 5px;
@@ -185,7 +208,9 @@ input[type="checkbox"]:checked + label span {
 			border-radius: 5px;
 			-moz-box-shadow:    inset 0 0 5px #000000;
 			-webkit-box-shadow: inset 0 0 5px #000000;
-			box-shadow:         inset 0 0 5px #000000;}
+			box-shadow:         inset 0 0 5px #000000;
+}
+
     #legend .title, 
     #legend .row { position: relative; float: left; width: 230px; background: none; padding: 5; margin: 0; font-size: 12px; }
     #legend .title {font-weight: bold; font-size: 13px;}
@@ -206,7 +231,6 @@ input[type="checkbox"]:checked + label span {
   overflow:hidden;
   padding:17px 19px 17px 19px;
   margin-left: -1px;
-  /* background:url('headers.png') no-repeat 0 -20px; */
   color: #fff;
   font-size: 22px;
   font-weight: bold;
@@ -215,15 +239,15 @@ input[type="checkbox"]:checked + label span {
    background-image: -o-linear-gradient(bottom, #970a77 41%, #c70d9d 91%);
    background-image: -moz-linear-gradient(bottom, #970a77 41%, #c70d9d 91%);
    background-image: -webkit-linear-gradient(bottom, #970a77 41%, #c70d9d 91%);
-   background-image: -ms-linear-gradient(bottom, #970a77A 41%, #c70d9d 91%);
+   background-image: -ms-linear-gradient(bottom, #970a77 41%, #c70d9d 91%);
 
    background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0.41, #970a77),
-	color-stop(0.91, #c70d9d)
-);
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.41, #970a77),
+		color-stop(0.91, #c70d9d)
+	);
      -moz-border-radius-topright: 4px;
      border-top-right-radius: 4px;
      -moz-border-radius-toplleft: 4px;
@@ -232,18 +256,18 @@ input[type="checkbox"]:checked + label span {
 }
 
 div.cartodb-popup {
-background: none;
-width: 222px;
-padding: 0;
--moz-border-radius-topright: 4px;
-border-top-right-radius: 4px;
--moz-border-radius-toplleft: 4px;
-border-top-left-radius: 4px;
+	background: none;
+	width: 222px;
+	padding: 0;
+	-moz-border-radius-topright: 4px;
+	border-top-right-radius: 4px;
+	-moz-border-radius-toplleft: 4px;
+	border-top-left-radius: 4px;
 }
 
 div.cartodb-popup a.cartodb-popup-close-button{
-top: -12px;
-right: -13px;
+	top: -12px;
+	right: -13px;
 }
 
 div.cartodb-popup div.cartodb-popup-content-wrapper{
@@ -265,37 +289,36 @@ div.cartodb-popup div.cartodb-popup-content-wrapper{
 
 
 div.cartodb-popup div.cartodb-popup-cont{
-width: 210px;
-max-width: none;
-max-height: none;
-
+	width: 210px;
+	max-width: none;
+	max-height: none;
 }
 
 div.cartodb-popup div.cartodb-popup-cont h4{
-font-family: Times New Roman, Times, serif;
-font-size: 12px;
-padding: 5px 0px 5px 15px;
+	font-family: Times New Roman, Times, serif;
+	font-size: 12px;
+	padding: 5px 0px 5px 15px;
 }
 
 div.cartodb-popup div.cartodb-popup-cont h3{
-font-family: Helvetica, Arial, Sans-serif;
-font-size: 12px;
-padding: 5px 0px 0px 15px;
-font-weight: normal;
-color: grey;
+	font-family: Helvetica, Arial, Sans-serif;
+	font-size: 12px;
+	padding: 5px 0px 0px 15px;
+	font-weight: normal;
+	color: grey;
 }
 
 div.cartodb-popup div.cartodb-popup-cont p{
-font-family: Helvetica, Arial, Sans-serif;
-font-size: 14px;
-padding: 5px 0px 0px 15px;
-font-weight: bold;
+	font-family: Helvetica, Arial, Sans-serif;
+	font-size: 14px;
+	padding: 5px 0px 0px 15px;
+	font-weight: bold;
 }
 
 
 div.cartodb_infobox {
-bottom:35px!important;
-font-family: "Helvetica",Arial;
+	bottom:35px!important;
+	font-family: "Helvetica",Arial;
 }
 
 
@@ -329,7 +352,7 @@ font-family: "Helvetica",Arial;
 	background: rgba(0,0,0,0.4); 
 }
 /* Tool tip */
-    #tooltip,#tooltip_closures {
+#tooltip, #tooltip_closures {
       position:absolute;
       right: 100px;
       width:140px;
@@ -337,26 +360,34 @@ font-family: "Helvetica",Arial;
       padding:10px;
       z-index:1000;
       display:none;
-      background: #eeeeee; /* Old browsers */
-      background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); /* FF3.6+ */
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
-      background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
-      background: -o-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Opera 11.10+ */
-      background: -ms-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* IE10+ */
-      background: linear-gradient(to bottom,  #eeeeee 0%,#cccccc 100%); /* W3C */      border-color:#DDDDDD!important;
+      background: #eee !important; /* Old browsers */
+      background-image: linear-gradient(bottom, #CCCCCC 23%, #EEEEEE 81%);
+      background-image: -o-linear-gradient(bottom, #CCCCCC 23%, #EEEEEE 81%);
+      background-image: -moz-linear-gradient(bottom, #CCCCCC 23%, #EEEEEE 81%);
+      background-image: -webkit-linear-gradient(bottom, #CCCCCC 23%, #EEEEEE 81%);
+      background-image: -ms-linear-gradient(bottom, #CCCCCC 23%, #EEEEEE 81%);
+
+      background-image: -webkit-gradient(
+			linear,
+			left bottom,
+			left top,
+			color-stop(0.23, #CCCCCC),
+			color-stop(0.81, #EEEEEE)
+		);
       font:normal 14px Arial!important;
       color:#111 !important;
       font-weight:bold !important;
-		padding: 5px 0 0 10px;
-		-webkit-border-radius: 3px;
-		-moz-border-radius: 3px;
-		border-radius: 3px;
-		-moz-box-shadow: 0 0 1px 1px #9c9c9c;
-		-webkit-box-shadow: 0 0 1px 1px #9c9c9c;
-		box-shadow: 0px 0px 14px 2px #000;
-	
+      padding: 5px 0 0 10px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      -moz-box-shadow: 0 0 1px 1px #9c9c9c;
+      -webkit-box-shadow: 0 0 1px 1px #9c9c9c;
+      box-shadow: 0px 0px 14px 2px #000;
+      
 	
     }
+
        
 #tooltip p {padding-right: 5px;}
     
