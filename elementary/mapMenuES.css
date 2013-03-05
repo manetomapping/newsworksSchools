@@ -17,7 +17,7 @@ html, body {padding: 0; margin: 0; }
 
 #title {
 		padding: 0 10px 5px 10px;
-		color: fff;
+		color: #fff;
 		position: absolute; 
 		top: 10; 
 		left: 60;
@@ -113,6 +113,9 @@ a:active {
 
 /* checkboxes */
 div#show-es {
+	color: white;
+	font-family:Helvetica, Arial, sans-serif;
+    font-size:12px;
 	font-weight: bold;
     padding:5px 0 0 10px;
     background:#494949;
@@ -230,21 +233,22 @@ right: -13px;
 }
 
 div.cartodb-popup div.cartodb-popup-content-wrapper{
-padding: 0 0 0 5px;
-width: 217px;
-max-width: none;
-max-height: 350px;
-overflow-y: scroll; 
-overflow-x: hidden;/* hide vertical scrollbar in Firefox */
--webkit-overflow-scrolling:touch;
-position: relative;/* fixes scrolling in IE */
-background-color: none;
--moz-border-radius-topright: 4px;
-border-top-right-radius: 4px;
--moz-border-radius-toplleft: 12px;
-border-top-left-radius: 12px;
- 
+	padding: 0 0 0 5px;
+	width: 217px;
+	max-width: none;
+	height: expression( this.scrollHeight > 349 ? "350px" : "auto" ); /* fix for ie 5+ */
+	max-height: 350px;
+	overflow-y: scroll; 
+	overflow-x: hidden;/* hide vertical scrollbar in Firefox */
+	-webkit-overflow-scrolling:touch;
+	position: relative;/* fixes scrolling in IE */
+	background-color: none;
+	-moz-border-radius-topright: 4px;
+	border-top-right-radius: 4px;
+	-moz-border-radius-toplleft: 12px;
+	border-top-left-radius: 12px;
 }
+
 
 div.cartodb-popup div.cartodb-popup-cont{
 width: 210px;

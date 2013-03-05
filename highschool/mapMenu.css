@@ -9,6 +9,7 @@ html, body {padding: 0; margin: 0; }
 	position: absolute; 
 	top: 85; 
 	left: 50;
+	z-index: 1;
 }
 
 
@@ -16,23 +17,25 @@ html, body {padding: 0; margin: 0; }
 #menu {
  	width: 517px; height:38px;
 	margin: 12px 0 0 10px;
-	padding: 0 0 0 0;	
+	padding: 0 0 0 0;
+	z-index: 1;	
 }
 
 
 
 #title {
 		padding: 0 10px 5px 10px;
-		color: fff;
+		color: #fff;
 		position: absolute; 
 		top: 10; 
 		left: 60;
 		width: 500px;
 		font-family: helvetica, arial, sans-serif;
 		background: #000; /* Old browsers */
-		background: rgba(0,0,0,0.50);
+		/* background: rgba(0,0,0,0.50); */
 		-moz-border-radius: 5px;
 		border-radius: 5px;
+		z-index: 1;
 }
 
 #title h1 {font-weight: bold; font-size: 19px; margin-bottom: 2px;}
@@ -135,7 +138,10 @@ a:active {
 * html #menu { zoom: 1; } /* IE6 */
 
 /* checkboxes */
-div#show, div#show-es {
+div#show {
+	color: white;
+	font-family:Helvetica, Arial, sans-serif;
+    font-size:12px;
 	font-weight: bold;
     padding:5px 0 0 10px;
     background:#494949;
@@ -275,6 +281,7 @@ div.cartodb-popup div.cartodb-popup-content-wrapper{
 	padding: 0 0 0 5px;
 	width: 217px;
 	max-width: none;
+	height: expression( this.scrollHeight > 349 ? "350px" : "auto" ); /* fix for ie 5+ */
 	max-height: 350px;
 	overflow-y: scroll; 
 	overflow-x: hidden;/* hide vertical scrollbar in Firefox */
@@ -292,6 +299,7 @@ div.cartodb-popup div.cartodb-popup-cont{
 	max-width: none;
 	max-height: none;
 }
+
 
 div.cartodb-popup div.cartodb-popup-cont h4{
 	font-family: Times New Roman, Times, serif;
@@ -383,7 +391,7 @@ div.cartodb_infobox {
       -moz-box-shadow: 0 0 1px 1px #9c9c9c;
       -webkit-box-shadow: 0 0 1px 1px #9c9c9c;
       box-shadow: 0px 0px 14px 2px #000;
-	
+      
 	
     }
        
@@ -391,3 +399,4 @@ div.cartodb_infobox {
     
 .cartodb_logo {display: none !important;} 
 .logos {position:absolute; bottom:10px; left:0; display:block; border:none; z-index:10000;}
+
