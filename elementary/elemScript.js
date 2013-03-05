@@ -30,13 +30,10 @@ var map;
 	var title_nabe = 'Percent of students attending their own <span style="text-decoration:underline;">neighborhood</span> school'; 
 	var title_charter = 'Percent of students attending a <span style="text-decoration:underline;">charter</span> school';
 
-
     L.tileLayer('https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/{z}/{x}/{y}.png', {
       attribution: 'Map by <a href="http://www.manetomapping.com">Michelle Schmitt</a> and Todd Vachon for <a href="http://www.newsworks.org">NewsWorks.org</a>'
     }).addTo(map);
-	
 
-    
 	var layerUrl_schools = 'http://manetomapping.cartodb.com/api/v1/viz/19592/viz.json';
 	var layerUrl_elemCatch = 'http://manetomapping.cartodb.com/api/v1/viz/19364/viz.json';
 	var layerURL_closures = 'http://manetomapping.cartodb.com/api/v1/viz/21843/viz.json';
@@ -44,8 +41,7 @@ var map;
 	//add the schools layer
     var layerOptions_schools = {
              query: "SELECT * FROM philadelphiaschools201201 WHERE instit_typ = 'District' AND grade_leve = 'Elementary School' AND facil_type = 'School' AND active = 'y' AND type IS NULL",
-              //tile_style: "#{{table_name}}{marker-fill: #F84F40; marker-width: 8; marker-line-color: white; marker-line-width: 2; marker-clip: false; marker-allow-overlap: true;} "
-	     tile_style: "#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFFFF;marker-opacity: .7; marker-width: 8; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ",
+              tile_style: "#philadelphiaschools201201 {[mapnik-geometry-type=point] {marker-fill: #FFFFFF;marker-opacity: .7; marker-width: 8; marker-line-opacity: 0; marker-placement: point;marker-type: ellipse;marker-allow-overlap: true;}} ",
 			interactivity: "facil_name",
 			infowindow: false,
 			cartodb_logo: false		
@@ -54,7 +50,7 @@ var map;
 	var layerOptions_ESCatch = {
 			  query: 'SELECT * FROM newsworks_elemcatch',
 			  tile_style: "#newsworks_elemcatch{line-color: #FFF;line-opacity: .8;line-width: .5;polygon-opacity: 0.9;}#newsworks_elemcatch [ p_innabe <= 100] {polygon-fill: #AE017E;}#newsworks_elemcatch [ p_innabe <= 74.6] {polygon-fill: #F768A1;}#newsworks_elemcatch [ p_innabe <= 62.9] {polygon-fill: #FBB4B9;} #newsworks_elemcatch [ p_innabe <= 51.1] {polygon-fill: #FEEBE2;}",
-			  interactivity: "cartodb_id,p_innabe,pcharterall,name,total,managed,psdp_out",
+			  interactivity: "cartodb_id,name,p_innabe,pcharterall,name,total,managed,psdp_out",
 			  cartodb_logo: false
 			  }
 	
@@ -69,7 +65,6 @@ var map;
 	
     var layers = [];
 
-	//add polygons first
 	cartodb.createLayer(map, layerUrl_elemCatch, layerOptions_ESCatch)
      .on('done', function(layer) {
 	  map.addLayer(layer);
@@ -79,10 +74,8 @@ var map;
     })
 		.infowindow.set('template', $('#infowindow_template').html())
 	});
-    //add the legend
 	CartoDBLegend(bins_nabe,title_nabe);
 	
-	//add corresponding schools layer next
     cartodb.createLayer(map, layerUrl_schools, layerOptions_schools)
      .on('done', function(layer) {
       map.addLayer(layer);
@@ -91,7 +84,6 @@ var map;
 	 .on('error', function() {
 	})
 	  .on('featureOver', function(e, latlng, pos, data) {
-	// Set popup content
 		document.body.style.cursor = "pointer";
 		showTooltip(data,pos)
 	})
@@ -102,7 +94,6 @@ var map;
 	
 	
 	});
-	//add closures on top
 	cartodb.createLayer(map, layerURL_closures, layerOptions_closures)
      .on('done', function(layer) {
       map.addLayer(layer);
@@ -123,7 +114,6 @@ var map;
 	 });
 	 
 	
-	//checkbox for the proposed closures	
 	$('#c2').click(function() {
 		if ($(this).is(':checked')) {
 			layers[2].setQuery("SELECT * FROM philadelphiaschools201201_closures  WHERE action IS NOT NULL AND facil_type = 'School' AND grade_leve ='Elementary School'");
@@ -132,14 +122,11 @@ var map;
         }
 		else{
 			layers[2].setQuery("SELECT * FROM philadelphiaschools201201_closures where cartodb_id = 0 ");
-			//layers[2].setCartoCSS("#philadelphiaschools201201_closures  {[mapnik-geometry-type=point] {marker-fill: #FF0000;marker-opacity: 0; marker-line-opacity: 0; }} ");
 			return true;
 		}
 	});
 	
 
-	
-	// pushing the button function
     $('.button').click(function(){
       $('.button').removeClass('selected'); $(this).addClass('selected');
       LayerActions[$(this).attr('id')]();
@@ -191,7 +178,6 @@ var map;
     }	
 	}
 
-//show tool tip 
  function showTooltip(data,point) {
       var html = "";
      
