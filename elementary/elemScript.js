@@ -178,6 +178,7 @@ var map;
     }	
 	}
 
+
  function showTooltip(data,point) {
       var html = "";
      
