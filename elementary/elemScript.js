@@ -34,9 +34,9 @@ var map;
       attribution: 'Map by <a href="http://www.manetomapping.com">Michelle Schmitt</a> and Todd Vachon for <a href="http://www.newsworks.org">NewsWorks.org</a>'
     }).addTo(map);
 
-	var layerUrl_schools = 'http://manetomapping.cartodb.com/api/v1/viz/19592/viz.json';
-	var layerUrl_elemCatch = 'http://manetomapping.cartodb.com/api/v1/viz/19364/viz.json';
-	var layerURL_closures = 'http://manetomapping.cartodb.com/api/v1/viz/21843/viz.json';
+	var layerUrl_schools = 'http://manetomapping.cartodb.com/api/v1/viz/philadelphiaschools201201/viz.json';
+	var layerUrl_elemCatch = 'http://manetomapping.cartodb.com/api/v1/viz/newsworks_elemcatch/viz.json';
+	var layerURL_closures = 'http://manetomapping.cartodb.com/api/v1/viz/philadelphiaschools201201_closures/viz.json';
 
 	//add the schools layer
     var layerOptions_schools = {
