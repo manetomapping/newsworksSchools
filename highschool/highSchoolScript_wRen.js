@@ -50,9 +50,9 @@ var map;
 	
 
     
-	var layerUrl_schools = 'http://manetomapping.cartodb.com/api/v1/viz/19592/viz.json';
-	var layerUrl_HSCatch = 'http://manetomapping.cartodb.com/api/v1/viz/19503/viz.json';
-	var layerURL_closures = 'http://manetomapping.cartodb.com/api/v1/viz/21843/viz.json';
+	var layerUrl_schools = 'http://manetomapping.cartodb.com/api/v1/viz/philadelphiaschools201201/viz.json';
+	var layerUrl_HSCatch = 'http://manetomapping.cartodb.com/api/v1/viz/newsworks_hscatchment/viz.json';
+	var layerURL_closures = 'http://manetomapping.cartodb.com/api/v1/viz/philadelphiaschools201201_closures/viz.json';
 
     var layerOptions_schools = {
              query: "SELECT * FROM philadelphiaschools201201 WHERE instit_typ = 'District' AND grade_leve = 'High School' AND facil_type = 'School' AND active = 'y' AND type IS NULL",
